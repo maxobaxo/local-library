@@ -1,20 +1,20 @@
 var mongoose = require('mongoose');
 
 // define schema
-var Schema = mongoose.Schema()
+var Schema = mongoose.Schema;
 
 var AuthorSchema = new Schema({
-    first_name: {type: String, required: true, max: 100},
-    last_name: { type: String, required: true, max: 100 },
-    date_of_birth: {type: Date},
-    date_of_death: {type: Date}
+    first_name: { type: String, required: true, max: 100 },
+    family_name: { type: String, required: true, max: 100 },
+    date_of_birth: { type: Date },
+    date_of_death: { type: Date }
 });
 
 // virtual for author's full name
 AuthorSchema
     .virtual('name')
     .get(function() {
-        return this.last_name + ', ' + this.first_name
+        return this.family_name + ', ' + this.first_name;
     });
 
 // virtual for author's URL
